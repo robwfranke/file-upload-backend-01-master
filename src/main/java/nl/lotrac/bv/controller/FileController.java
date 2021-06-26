@@ -65,9 +65,22 @@ public class FileController {
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable String id) {
         FileDB fileDB = storageService.getFile(id);
+        log.debug("fileDB: "+fileDB);
+
+
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
                 .body(fileDB.getData());
+
+
     }
+    @DeleteMapping(value="/files/{id}")
+    public ResponseEntity<Object>deleteFileById(@PathVariable("id")String id){
+        storageService.deleteFileById(id);
+        return ResponseEntity.noContent().build();
+
+
+
+
 }

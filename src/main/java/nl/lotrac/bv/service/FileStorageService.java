@@ -2,6 +2,7 @@ package nl.lotrac.bv.service;
 
 import java.io.IOException;
 import java.util.stream.Stream;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class FileStorageService {
 
     @Autowired
     private FileDBRepository fileDBRepository;
+
+
+
+
 
     public FileDB store(MultipartFile file) throws IOException {
 
@@ -41,3 +46,14 @@ public class FileStorageService {
     }
 
 }
+
+@
+ @Transactional
+public  void  deleteFileById(String id){
+
+    fileDBRepository.deleteFileById(id);
+
+
+}
+
+
